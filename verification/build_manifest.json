@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "source": "papers/src/general-lepotier-isom.tex",
+  "source_sha256": "349dce941fd2c3a6002e7b316d15e182b5e0c19533776befb4553e21a62ce88b",
+  "pdf": "papers/paper_v1.pdf",
+  "pdf_sha256": "a3f9f7665511396c7ecd3da4fac953581569c5d78f640479ac0dffd978f7632f",
+  "built_at_utc": "2026-10-24T04:12:39.6497759Z",
+  "engine": "xelatex",
+  "passes": 3,
+  "unresolved_references": false,
+  "mathematical_verification": "Not performed; compilation is not a mathematical proof check."
+}

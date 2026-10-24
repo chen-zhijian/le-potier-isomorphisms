@@ -1,0 +1,1010 @@
+\documentclass[11pt,reqno]{amsart}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[a4paper,margin=28mm]{geometry}
+\usepackage{amssymb,mathtools}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=black,citecolor=black,urlcolor=black,pdftitle={Le Potier Isomorphisms for Coherent Sheaves on Complex Spaces}}
+\numberwithin{equation}{section}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\OO}{\mathcal O}
+\newcommand{\FF}{\mathcal F}
+\newcommand{\MM}{\mathcal M}
+\newcommand{\II}{\mathcal I}
+\newcommand{\WW}{\mathcal W}
+\newcommand{\BB}{\mathcal B}
+\newcommand{\DD}{\mathcal D}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\RR}{\mathbf R}
+\newcommand{\Sym}{\operatorname{Sym}}
+\newcommand{\Tor}{\operatorname{tor}}
+\newcommand{\Supp}{\operatorname{Supp}}
+\newcommand{\Cone}{\operatorname{Cone}}
+\newcommand{\Coh}{\operatorname{Coh}}
+\newcommand{\GR}{\mathrm{GR}}
+\newcommand{\main}{\mathrm{main}}
+\newcommand{\tf}{\mathrm{tf}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\codim}{\operatorname{codim}}
+\newcommand{\nd}{\operatorname{nd}}
+\DeclareMathOperator{\Proj}{Proj}
+\setlength{\emergencystretch}{2em}
+\setlist[enumerate]{leftmargin=*,itemsep=3pt}
+\title[Le Potier isomorphisms on complex spaces]{Le Potier isomorphisms for coherent sheaves on complex spaces}
+\date{}
+\author{Zhijian Chen}
+\address{Institute of Mathematics, Academy of Mathematics and Systems Science, Chinese Academy of Sciences, Beijing 100190, China}
+\email{chenzhijian@amss.ac.cn}
+\author{Zhuo Liu}
+\address{Beijing Institute of Mathematical Sciences and Applications; Department of Mathematics and Yau Mathematical Sciences Center, Tsinghua University, Beijing, China}
+\email{liuzhuo@amss.ac.cn}
+\author{Chenghao Qing}
+\address{Yau Mathematical Sciences Center, Tsinghua University, Beijing 100084, China}
+\email{qingchenghao@amss.ac.cn}
+\subjclass[2020]{Primary 32L10; Secondary 32C35, 32L20, 14F17}
+\keywords{Le Potier isomorphism, coherent analytic sheaf, projectivization, multiplier submodule, Grauert--Riemenschneider sheaf}
+\begin{document}
+\begin{abstract}
+We prove a weighted canonical Le Potier isomorphism for coherent sheaves on reduced irreducible complex spaces, under semipositivity assumptions on a locally free modification. The theorem gives higher-direct-image vanishing on the reduced main component of the projectivization and extends the canonical and symmetric-power formulas of Liu--Liu--Yang--Zhou. We also establish the classical unweighted differential-form isomorphism for locally free sheaves over arbitrary complex spaces, including nonreduced bases. Explicit examples describe the obstructions for general coherent sheaves and show that the weighted differential-form formula requires additional hypotheses.
+\end{abstract}
+\maketitle
+
+\section{Introduction}
+Let $E$ be a holomorphic vector bundle on a complex manifold $X$. Following the convention of Grothendieck \cite{Grothendieck}, $\PP_X(E)$ parametrizes the invertible quotient sheaves of $E$. Let $p:\PP_X(E)\to X$ be the canonical fibration. The classical Le Potier isomorphism is
+\begin{equation}\label{eq:classical}
+ H^q(X,\Omega_X^a\otimes E)
+ \simeq H^q(\PP_X(E),\Omega_{\PP_X(E)}^a\otimes\OO(1)).
+\end{equation}
+It connects vector-bundle cohomology with line-bundle cohomology on the induced projective fiber space; see \cite{LePotier}. A related adjoint canonical bundle identity, with $r=\rank E$, is
+\begin{equation}\label{eq:canonical-smooth}
+ \RR p_*\bigl(K_{\PP(E)}\otimes\OO(m+r)\bigr)
+ \simeq K_X\otimes\Sym^m E\otimes\det E,
+ \qquad m\geq0.
+\end{equation}
+The isomorphism holds in the derived category of coherent analytic sheaves on $X$. The right side is viewed as the complex having only term placed in cohomological degree zero. Formula \eqref{eq:canonical-smooth} does not require a positivity assumption, while its weighted version imposes a multiplier ideal upstairs and a multiplier submodule downstairs. The use of canonical direct images follows the framework of Grauert--Riemenschneider \cite{GR}.
+
+For a general coherent sheaf $\FF$, the universal invertible quotient on $\pi:\PP_X(\FF)\to X$ still defines maps
+\[
+ \alpha_m:\Sym^m\FF\longrightarrow\pi_*\OO_{\PP_X(\FF)}(m).
+\]
+However, these maps need not be isomorphisms, and their being isomorphisms does not imply higher-direct-image vanishing. Moreover, the full symmetric-algebra projectivization may contain vertical components or nilpotent structure. These phenomena prevent a direct application of the vector-bundle argument. We give explicit examples in Section~\ref{sec:examples}.
+
+The extension has two distinct forms. The canonical weighted theory uses the reduced main component and a metric on a locally free modification. An auxiliary Hermitian line bundle permits cancellation of the determinant in both the bundle and its integrability condition, giving the symmetric-power formula under strong Nakano semipositivity on the modification. The unweighted differential theory retains the full symmetric-algebra projectivization and is an isomorphism for locally free sheaves over arbitrary bases. For general coherent sheaves, and for differential forms twisted by multiplier ideals, additional obstructions occur. We make these distinctions explicit rather than identify canonical direct images with ordinary differential-form coefficients.
+
+For an arbitrary complex space $X$, $\Omega_X^a=\bigwedge^a\Omega_X^1$ denotes the sheaf of analytic K\"ahler differentials. It is not replaced by its torsion-free quotient or reflexive hull.
+
+To state the weighted theorem, let $X$ be reduced and irreducible, and let $\FF$ have generic rank $r>0$. Choose a locally projective modification
+\[
+ \mu:\widetilde X\longrightarrow X,
+ \qquad \widetilde X\text{ smooth},\qquad
+ E=\mu^T\FF:=\mu^*\FF/\Tor(\mu^*\FF)\text{ locally free}.
+\]
+Let $U\subset X$ be a dense smooth open set where $\FF$ is locally free and $\mu$ is an isomorphism. Put
+\[
+ Y=\PP_X(\FF),\qquad
+ Y_0=Y_{\main}:=\overline{\PP_U(\FF|_U)}_{\mathrm{red}},\qquad
+ \pi_0:Y_0\to X.
+\]
+The universal quotient gives a proper bimeromorphic map
+\[
+ \nu:Z:=\PP_{\widetilde X}(E)\longrightarrow Y_0,
+ \qquad f:=\pi_0\nu=\mu p,
+\]
+where $p:Z\to\widetilde X$. Denote the tautological line bundles by $L_0:=\OO_{Y}(1)|_{Y_0}$ and $L=\nu^*L_0$.
+
+Assume that a metric $h$ on $\FF|_U$ extends to a singular Griffiths semipositive metric $\widetilde h$ on $E$, with $0<\det\widetilde h<\infty$ almost everywhere. It induces a semipositive singular quotient metric $h_L$ on $L$. Set
+\begin{equation}\label{eq:Em}
+ E_m=\Sym^m E\otimes\det E,
+ \qquad H_m=\Sym^m\widetilde h\otimes\det\widetilde h.
+\end{equation}
+Let $A$ be a holomorphic line bundle on $\widetilde X$ with a measurable Hermitian metric $k$ that is finite and positive almost everywhere. For an integer $m\geq0$, put
+\begin{align}
+ T_m(A)&=L^{m+r}\otimes p^*A,
+ &\kappa_m&=h_L^{m+r}\otimes p^*k,\label{eq:combined-metric}\\
+ A_m(A)&=K_Z\otimes T_m(A)\otimes\II(\kappa_m),\label{eq:Am}\\
+ \WW_m(A)&=\mu_*\bigl(K_{\widetilde X}\otimes
+                  \MM(E_m\otimes A,H_m\otimes k)\bigr),
+ &\BB_m(A)&=\nu_*A_m(A).\label{eq:WB}
+\end{align}
+Here $\MM(V,H)$ denotes the sheaf of holomorphic sections of $V$ whose squared $H$-norm is locally integrable. When $(A,k)=(\OO_{\widetilde X},1)$, we abbreviate these sheaves to $A_m$, $\WW_m$, and $\BB_m$.
+
+\begin{theorem}[Weighted canonical Le Potier isomorphism]\label{thm:main}
+Let $X$ be reduced and irreducible, with no normality or compactness assumption, and retain the preceding geometric and metric data. Fix $m\geq0$ for which the combined metric $\kappa_m$ has plurisubharmonic local weights. Then $\WW_m(A)$ and $\BB_m(A)$ are coherent, and there is a natural isomorphism in the derived category of coherent analytic sheaves on $X$
+\begin{equation}\label{eq:main-derived}
+ \RR\pi_{0*}\BB_m(A)\simeq\WW_m(A).
+\end{equation}
+In particular, $R^j\pi_{0*}\BB_m(A)=0$ for $j>0$, and
+\begin{equation}\label{eq:main-cohom}
+ H^q(X,\WW_m(A))\simeq H^q(Y_0,\BB_m(A))
+ \qquad(q\geq0).
+\end{equation}
+The sheaves and isomorphisms agree for choices admitting a common locally projective refinement on which the line bundles and metrics are identified with their pullbacks. No separate semipositivity assumption on $k$ is required.
+\end{theorem}
+
+For $(A,k)=(\OO_{\widetilde X},1)$, the hypothesis holds for every $m\geq0$. In that case $\BB_m$ is the weighted Grauert--Riemenschneider sheaf of $L_0^{m+r}$ defined on the resolution $Z$. In general, $p^*A$ need not descend to a line bundle on $Y_0$, so $\BB_m(A)$ is understood by its stated direct-image definition. The common-refinement condition does not assert independence of arbitrary choices of $A$ that merely agree over $U$.
+
+The determinant-free case uses a stronger positivity condition. We call $\widetilde h$ strongly Nakano semipositive in the sense of \cite[Definition 1.1]{LLYZpre} if it is Griffiths semipositive and
+\begin{equation}\label{eq:strong}
+ h_L^{r+1}\otimes p^*(\det\widetilde h)^{-1}
+ \quad\hbox{on}\quad L^{r+1}\otimes p^*(\det E)^{-1}
+\end{equation}
+is semipositive.
+
+\begin{corollary}[Symmetric powers of a coherent sheaf]\label{cor:main-symmetric}
+Assume that $\widetilde h$ is strongly Nakano semipositive. For $m\geq1$, put
+\begin{align}
+ \widehat\kappa_m&=h_L^{m+r}\otimes p^*(\det\widetilde h)^{-1},\\
+ \widehat\WW_m&=\mu_*\bigl(K_{\widetilde X}\otimes
+                     \MM(\Sym^mE,\Sym^m\widetilde h)\bigr),\\
+ \widehat\BB_m&=\nu_*\bigl(K_Z\otimes L^{m+r}\otimes
+                 p^*(\det E)^{-1}\otimes\II(\widehat\kappa_m)\bigr).
+\end{align}
+Then $\RR\pi_{0*}\widehat\BB_m\simeq\widehat\WW_m$ and
+$H^q(Y_0,\widehat\BB_m)\simeq H^q(X,\widehat\WW_m)$ for every $q\geq0$.
+\end{corollary}
+\begin{proof}
+Take $(A,k)=((\det E)^{-1},(\det\widetilde h)^{-1})$ in Theorem~\ref{thm:main}. The combined metric is the metric in \eqref{eq:strong} tensored with $h_L^{m-1}$, hence is semipositive. The determinant cancels in both $E_m\otimes A$ and $H_m\otimes k$.
+\end{proof}
+
+The unweighted statement over an arbitrary base takes the following form.
+
+\begin{theorem}[Locally free case over an arbitrary base]\label{thm:intro-free}
+Let $X$ be a complex space, possibly nonreduced, and let $E$ be locally free of positive rank. For $p:\PP_X(E)\to X$ and every $a\geq0$, the natural map is an isomorphism
+\[
+ \Omega_X^a\otimes E\xrightarrow{\sim}
+ \RR p_*(\Omega_{\PP_X(E)}^a\otimes\OO(1)).
+\]
+Consequently \eqref{eq:classical} holds for all $q\geq0$.
+\end{theorem}
+
+Analytic projective fiber spaces are constructed by Grothendieck \cite{Grothendieck}; modifications making torsion-free inverse images locally free are treated by Riemenschneider \cite{Riemenschneider}. The canonical direct-image viewpoint originates in Grauert--Riemenschneider vanishing \cite{GR}. The vector-bundle formulas of Liu--Liu--Yang--Zhou \cite{LLYZ,LLYZpre} motivate our weighted extension. Theorem~\ref{thm:main} with $A=\OO$ recovers their determinant-twisted canonical formula; Corollary~\ref{cor:main-symmetric} recovers their symmetric-power formula under strong Nakano semipositivity. The precise smooth specializations are given in Section~\ref{sec:recovery}.
+
+Their assertion with $\Omega_{\PP(E)}^a$ and a multiplier ideal is a separate issue. Example~\ref{ex:weighted-differentials} gives a rank-two metric on a disc satisfying their positivity definition for which the two degree-one cohomology groups in \cite[Theorem 1.3(ii)]{LLYZpre} have dimensions zero and three. This computation concerns the statement and proof in the cited preprint; the canonical and symmetric-power formulas are not contradicted. Proposition~\ref{prop:base-ideal} gives a valid differential-form version when the ideal comes from the base. We therefore distinguish these weighted formulas throughout.
+
+Section~\ref{sec:geometry} develops the geometry and integrability statements, including the projective fiber calculation. Section~\ref{sec:proof} proves the weighted theorem using Matsumura's relative vanishing theorem \cite{Matsumura}, explains its relation to the full projectivization, and derives the vector-bundle formulas. Section~\ref{sec:unweighted} establishes the differential-form isomorphisms and describes the comparison defects for coherent sheaves. Section~\ref{sec:examples} gives explicit examples showing the necessity of these distinctions.
+
+\section{Projectivization and integrability}\label{sec:geometry}
+\subsection{Projectivization and determinants}
+For $\FF\in\Coh(X)$, the analytic projective fiber space $Y=\PP_X(\FF)$ represents invertible quotients of pullbacks of $\FF$:
+\[
+ \operatorname{Hom}_X(T,Y)
+ \simeq\{g^*\FF\twoheadrightarrow M:\ M\text{ invertible on }T\}/\simeq.
+\]
+Locally, a presentation $\OO_U^s\xrightarrow{(a_{ij})}\OO_U^N\to\FF|_U\to0$ realizes $Y|_U$ as the analytic subspace of $U\times\PP^{N-1}$ defined by
+\[
+ \sum_{i=1}^N a_{ij}T_i=0\quad(1\leq j\leq s).
+\]
+It carries $\pi^*\FF\twoheadrightarrow\OO_Y(1)$. This construction includes all scheme-like analytic structure, not merely the common zero set. We write $\Proj_X^{\mathrm{an}}\Sym^\bullet\FF$ as shorthand for it. The analytic construction and its functoriality are discussed in \cite{Grothendieck}.
+
+If $E$ is locally free, $\PP_X(E)$ parametrizes lines in the geometric dual bundle $E^*$. Thus $p_*\OO(m)=\Sym^m E$ for $m\geq0$. One must not dualize a general coherent sheaf to switch conventions. Throughout, the metric is on the bundle whose sheaf of sections is $E$, not on the linear space with sheaf of functions $\Sym E$.
+
+On a reduced space, torsion means sections annihilated locally by a non-zero-divisor; equivalently, these sections vanish on a dense analytic open set. This convention also applies at points with several local branches. Local freeness of $\mu^T\FF$ can be obtained by a sheaf modification followed by resolution; see \cite{Riemenschneider} and the projective monoidal transformation in \cite[Theorem 2.3]{RuppenthalSera}. We use locally projective choices, so the maps from smooth spaces occurring in the proof are locally K\"ahler.
+
+\begin{lemma}\label{lem:diagram}
+With the notation preceding Theorem~\ref{thm:main}, $\nu:Z\to Y_0$ is proper, surjective, and bimeromorphic, and $\nu^*L_0=L$. Locally over $X$, $p$, $f$, and $\nu$ are projective.
+\end{lemma}
+\begin{proof}
+The surjection $\mu^*\FF\twoheadrightarrow E$ induces
+\[
+ \PP(E)\hookrightarrow\PP(\mu^*\FF)
+   =\widetilde X\times_X\PP(\FF).
+\]
+Composition with the projection defines a proper map to $Y$, which is an isomorphism over $\PP_U(\FF|_U)$. The space $Z$ is reduced and irreducible. Its image is therefore the reduced closure $Y_0$, and the map factors through that analytic subspace. Properness and the isomorphism on the indicated dense open set prove bimeromorphicity. Functoriality of the universal quotient gives the line-bundle identity. The displayed closed immersion factors through $\widetilde X\times_XY_0$, whose projection to $Y_0$ is a base change of $\mu$; this proves local projectivity of $\nu$. The same property for $f$ follows by composition, and for $p$ from its projective-bundle structure.
+\end{proof}
+
+The same construction is generally not a modification onto the whole of $Y$: vertical components are outside its image. For an ideal in an integral base, $Y_0$ agrees with the reduced dominating projectivization obtained from the Rees algebra. Replacing $Y$ by $Y_0$ therefore changes the object under study.
+
+The determinant convention is fixed by the locally free modification. Set $\FF_{\tf}=\FF/\Tor\FF$ and define the torsion-free exterior determinant by
+\[
+ \det_{\tf}\FF=(\bigwedge^r\FF_{\tf})/\Tor(\bigwedge^r\FF_{\tf}).
+\]
+This rank-one sheaf need not be invertible or reflexive. Put
+\begin{equation}\label{eq:Gm}
+ G_m=\bigl(\Sym^m\FF_{\tf}\otimes\det_{\tf}\FF\bigr)/\Tor.
+\end{equation}
+\begin{lemma}\label{lem:det}
+There is a natural isomorphism $\mu^T G_m\simeq E_m$. In contrast, replacing $\det_{\tf}\FF$ by $(\bigwedge^r\FF)^{**}$ need not give this identity.
+\end{lemma}
+\begin{proof}
+The quotient $\mu^*\FF\twoheadrightarrow E$ induces a surjection
+\[
+ \mu^*(\Sym^m\FF_{\tf}\otimes\det_{\tf}\FF)
+       \twoheadrightarrow\Sym^mE\otimes\det E.
+\]
+Base-torsion sections of the source sheaves map to zero, since their images are supported in a proper analytic subset of the smooth source of $E_m$. Thus the map factors to a surjection $\mu^*G_m\twoheadrightarrow E_m$. Its kernel vanishes generically and hence is torsion. Conversely every torsion section lies in that kernel because $E_m$ is locally free. Quotienting gives the claimed isomorphism. Reflexive hulls can alter exceptional divisors after pullback, as Example~\ref{ex:blowup} shows.
+\end{proof}
+
+In the specialization $(A,k)=(\OO_{\widetilde X},1)$, we may consequently write $\WW_m=\omega_X^{\GR}(G_m,H_m)$, provided the metric is understood on $\mu^T G_m$. A formula written simply with $\det\FF$ must declare this convention.
+
+\subsection{Integrable forms and fiber integration}\label{sec:integrability}
+On a smooth complex manifold $M$, a singular Hermitian metric $k$ on a bundle $V$ is a measurable family of Hermitian forms with $0<\det k<\infty$ almost everywhere. We call it Griffiths semipositive if the dual metric is Griffiths seminegative: the functions $\log|s|_{k^*}^2$ have plurisubharmonic representatives for local holomorphic dual sections $s$. Representatives are fixed compatibly with the induced tautological metric. For a line bundle with local squared norm $e^{-\varphi}$, semipositivity means that $\varphi$ is plurisubharmonic, and
+\[
+ \II(e^{-\varphi})=\{g\in\OO_M:|g|^2e^{-\varphi}\in L^1_{\mathrm{loc}}\}.
+\]
+This convention fixes all factors in the multiplier ideals used below.
+
+Write $\MM(V,k)$ for the sheaf of holomorphic sections whose squared norm is locally integrable. Integrability may be tested using any smooth positive volume form; different choices are locally equivalent. If $k$ is Griffiths semipositive, then $k$ is locally bounded below by a positive multiple of a smooth metric: local upper bounds on the dual norms of a frame bound the largest eigenvalue of $k^*$.
+
+For top forms, the same condition can be expressed by the intrinsic positive density associated to a $V$-valued $(\dim M,0)$-form. This eliminates any dependence on a background volume form from the change-of-variables argument.
+
+\begin{samepage}
+\begin{lemma}[Birational transformation of integrable top forms]\label{lem:birational}
+Let $a:M'\to M$ be a proper modification between smooth manifolds, and let $(V,k)$ be a measurable Hermitian bundle on $M$ whose metric is locally bounded below by a positive smooth metric. Then, as subsheaves of meromorphic $V$-valued top forms,
+\begin{equation}\label{eq:birational}
+ a_*\bigl(K_{M'}\otimes\MM(a^*V,a^*k)\bigr)
+ =K_M\otimes\MM(V,k).
+\end{equation}
+No higher-direct-image assertion is included in this lemma.
+\end{lemma}
+\end{samepage}
+\begin{proof}
+Outside the exceptional and critical sets, $a$ is biholomorphic. Pullback of a top form preserves its norm density under change of variables. Properness permits integrability over a relatively compact base set to be tested on finitely many relatively compact coordinate neighborhoods upstairs. Thus an integrable holomorphic top form downstairs pulls back to one upstairs.
+
+Conversely, an integrable form upstairs defines a holomorphic form on the complement of the exceptional image downstairs. Change of variables gives finite weighted integrals there. The local lower bound on $k$ gives ordinary $L^2$ integrability of each coefficient. The removable-singularity theorem for $L^2$ holomorphic functions across analytic subsets extends those coefficients holomorphically. Analytic subsets have measure zero, so the extended form retains its weighted integrability. The two operations are inverse on a dense open set and hence everywhere.
+\end{proof}
+
+For line metrics with plurisubharmonic weights this is the canonical-bundle transformation rule for multiplier ideals. The argument above also applies to $H_m$, which has the required lower bound.
+
+The next proposition identifies the multiplier ideal on the projective bundle with the corresponding multiplier submodule on the base.
+\begin{proposition}[Weighted projective-bundle direct image]\label{prop:fiber}
+Let $(E,h)$ be a singular Griffiths semipositive bundle of rank $r$ on a smooth manifold $M$. Put $p:Z=\PP_M(E)\to M$, $L=\OO_Z(1)$, and let $h_L$ be the quotient metric. Let $(A,k)$ be a Hermitian line bundle on $M$, with $k$ measurable, finite and positive almost everywhere. Fix $m\geq0$ such that $\kappa_m=h_L^{m+r}\otimes p^*k$ is semipositive. Then
+\begin{multline}\label{eq:fiberidentity}
+ p_*\bigl(K_Z\otimes L^{m+r}\otimes p^*A\otimes\II(\kappa_m)\bigr)\\
+ =K_M\otimes\MM(\Sym^mE\otimes\det E\otimes A,
+                         \Sym^mh\otimes\det h\otimes k).
+\end{multline}
+In particular, the multiplier submodule on the right is coherent.
+\end{proposition}
+\begin{proof}
+The relative Euler sequence gives
+\begin{equation}\label{eq:relativeK}
+ K_{Z/M}=L^{-r}\otimes p^*\det E.
+\end{equation}
+Consequently $p_*(K_{Z/M}\otimes L^{m+r}\otimes p^*A)=\Sym^mE\otimes\det E\otimes A$. Forgetting the multiplier ideal identifies an upstairs holomorphic top form with a downstairs form valued in this bundle.
+
+First take $A=\OO_M$ and $k=1$. At a point where $h$ is finite and positive definite, choose an $h$-orthonormal frame. A homogeneous polynomial of degree $m$ represents a section of $K_{\PP^{r-1}}\otimes\OO(m+r)$, with the determinant factor in \eqref{eq:relativeK}. We compute its fiber norm explicitly.
+
+Let $r\geq2$, let $\beta=(\beta_1,\ldots,\beta_r)$ be a multi-index of total degree $m$, and put $\beta'=(\beta_1,\ldots,\beta_{r-1})$. For standard Lebesgue measure on $\CC^{r-1}$, repeated use of the beta integral gives
+\begin{equation}\label{eq:beta-integral}
+ \int_{\CC^{r-1}}
+ \frac{|w^{\beta'}|^2}{(1+|w|^2)^{m+r}}\,d\lambda(w)
+ =\frac{\pi^{r-1}\beta_1!\cdots\beta_r!}{(m+r-1)!}.
+\end{equation}
+Distinct monomials are orthogonal by invariance under coordinatewise rotations. Normalize symmetric tensors so that the monomial $e^\beta$ in an orthonormal frame has squared norm $\beta_1!\cdots\beta_r!/m!$. Then the fiber integral is the symmetric tensor metric multiplied by
+\[
+ c_{m,r}=\frac{\pi^{r-1}m!}{(m+r-1)!}.
+\]
+For $r=1$ the fiber is a point and this convention gives $c_{m,1}=1$. Other normalizations of the top-form density change only this positive constant.
+
+Changing from an orthonormal frame to a general frame yields
+\begin{equation}\label{eq:integral}
+ \|s\|_{\mathrm{fiber},h_L^{m+r}}^2
+       =c_{m,r}|s|_{\Sym^mh\otimes\det h}^2.
+\end{equation}
+The determinant factor records the relative canonical bundle; in particular replacing $h$ by $e^{-\psi}h$ multiplies both sides by $e^{-(m+r)\psi}$.
+
+For general $(A,k)$, use a local frame of $A$ and multiply this identity by the scalar metric $k$. The resulting identity holds almost everywhere. Tonelli's theorem equates the integral of the upstairs top-form density over $p^{-1}(V)$ with $c_{m,r}$ times the downstairs weighted integral. Properness of $p$ and a finite coordinate cover of the projective fiber identify this integral condition with local integrability. This proves \eqref{eq:fiberidentity}. The left side is coherent by coherence of $\II(\kappa_m)$ and proper direct-image coherence; tensoring locally with $K_M^{-1}$ proves the final assertion.
+\end{proof}
+
+Coherence here uses semipositivity of the combined line metric $\kappa_m$. For $A=\OO_M$ it gives the determinant-twisted submodule under Griffiths semipositivity. For $A=(\det E)^{-1}$ with the inverse determinant metric it gives the determinant-free submodule under the additional combined-metric hypothesis. It does not prove coherence of every multiplier submodule associated to an arbitrary Griffiths semipositive metric.
+
+\section{The weighted theorem and its specializations}\label{sec:proof}\label{sec:recovery}
+\subsection{Proof of the weighted theorem}
+We use the following consequences of Matsumura's results \cite[Corollary 1.5 and Theorem 1.7]{Matsumura}. If $g:M\to S$ is a surjective proper K\"ahler morphism with $M$ smooth and $(A,k)$ a semipositive singular Hermitian line bundle, then
+\begin{equation}\label{eq:mat-tf}
+ R^jg_*(K_M\otimes A\otimes\II(k))
+ \text{ is torsion-free.}
+\end{equation}
+For a modification these sheaves vanish when $j>0$. If $g$ is projective and has relative dimension $d$ over its smooth locus, then
+\begin{equation}\label{eq:mat-nd}
+ R^jg_*(K_M\otimes A\otimes\II(k))=0
+ \quad\text{for }j>d-\max_{s\text{ in the smooth locus}}\nd(A|_{M_s},k|_{M_s}).
+\end{equation}
+Here the numerical dimension is that of the restricted metric. A smooth positive metric on an ample line bundle on a $d$-dimensional compact fiber has numerical dimension $d$. These statements are applied locally on $S$, where our maps are projective. After restricting to a sufficiently small Stein base neighborhood, the smooth total space of such a projective map is K\"ahler, as required by the local meaning of a K\"ahler morphism in \cite[Remark 1.4]{Matsumura}. They concern the indicated canonical sheaves, not arbitrary coherent direct images.
+
+\begin{lemma}[Vanishing for the projective bundle and composite maps]\label{lem:vanishing}
+Under the hypotheses of Theorem~\ref{thm:main},
+\begin{equation}\label{eq:threevanish}
+ R^jp_*A_m(A)=R^j\nu_*A_m(A)=R^jf_*A_m(A)=0
+ \qquad(j>0).
+\end{equation}
+\end{lemma}
+\begin{proof}
+The metric $\kappa_m$ on $T_m(A)$ is semipositive. Since $\nu$ is a modification, its higher-image vanishing follows from \eqref{eq:mat-tf}.
+
+For $p$, choose a point $x\in\widetilde X$ where $\widetilde h$ and $k$ are finite and nondegenerate and the restriction of the combined metric has its usual fiberwise representative. Such points have full measure: in projective charts the plurisubharmonic weights agree almost everywhere with the weights computed from the measurable matrices; Fubini and uniqueness of plurisubharmonic representatives give equality on the whole fiber for almost every such $x$. There $\kappa_m$ is a positive constant times the positive Fubini--Study metric on $\OO_{\PP^{r-1}}(m+r)$ determined by $\widetilde h_x$. Its numerical dimension is $r-1$. Formula \eqref{eq:mat-nd} therefore gives vanishing in every positive degree.
+
+For $f$, choose such an $x$ over the smooth open set $U$ where $\mu$ is an isomorphism. The fiber again has dimension $r-1$ and full metric numerical dimension. Apply \eqref{eq:mat-nd} on each small base neighborhood. When $r=1$, $p$ is the identity and $f$ is a modification, so the assertion follows directly from \eqref{eq:mat-tf}. This uses the metric vanishing theorem and does not infer higher-image vanishing solely from generic fibers of a nonflat map.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Proposition~\ref{prop:fiber} gives
+\begin{equation}\label{eq:pushp}
+ p_*A_m(A)=K_{\widetilde X}\otimes\MM(E_m\otimes A,H_m\otimes k).
+\end{equation}
+This sheaf is coherent, as are its proper direct image $\WW_m(A)$ and $\BB_m(A)=\nu_*A_m(A)$. Ordinary composition gives
+$f_*A_m(A)=\mu_*p_*A_m(A)=\WW_m(A)$.
+By Lemma~\ref{lem:vanishing}, derived composition now yields
+\[
+ \RR\pi_{0*}\BB_m(A)
+ =\RR\pi_{0*}\RR\nu_*A_m(A)
+ \simeq\RR f_*A_m(A)\simeq\WW_m(A).
+\]
+This proves \eqref{eq:main-derived}; derived global sections give \eqref{eq:main-cohom}. Using $p$ instead of $\nu$ in the composition also proves
+\begin{equation}\label{eq:basevanish}
+ R^j\mu_*\bigl(K_{\widetilde X}\otimes
+              \MM(E_m\otimes A,H_m\otimes k)\bigr)=0
+ \quad(j>0).
+\end{equation}
+
+For refinement independence, let $a:\widetilde X'\to\widetilde X$ be a smooth locally projective refinement. The natural locally free quotient of $(\mu a)^*\FF$ is $a^*E$, since its kernel is generically zero and exactly the torsion. The induced map $b:Z'=\PP(a^*E)\to Z$ is a modification. Pull back $(A,k)$ to $(A',k')$. Then $T_m(A')=b^*T_m(A)$ and $\kappa'_m=b^*\kappa_m$. The line-bundle case of Lemma~\ref{lem:birational}, equivalently the canonical transformation rule for multiplier ideals, gives
+\[
+ b_*A'_m(A')=A_m(A).
+\]
+Since $\nu'=\nu b$ and $f'=fb$, ordinary composition identifies both $\BB'_m(A')$ with $\BB_m(A)$ and $\WW'_m(A')=f'_*A'_m(A')$ with $\WW_m(A)$. The derived identifications are compatible by the same vanishing argument. Applying this to a common refinement proves the stated independence. The comparison concerns pulled-back line-bundle data; two arbitrary extensions of $A|_U$ across the exceptional set need not give the same sheaves.
+\end{proof}
+
+\begin{remark}[What the hypothesis does and does not require]
+The theorem allows an arbitrary coherent $\FF$ of positive generic rank; its torsion disappears in $\mu^T\FF$ and in $Y_0$. It does not assert that every such sheaf admits an extending Griffiths semipositive metric. Positivity on $\FF|_U$ alone leaves a boundary-extension problem. Once an extending metric on one locally free resolution is supplied, pullback to refinements is legitimate. For nontrivial $(A,k)$, the theorem additionally requires semipositivity of $\kappa_m$ for the chosen $m$; this is not automatic from Griffiths semipositivity of $\widetilde h$. Neither smoothness of that metric nor analytic singularities of its weights are required by the vanishing theorem used above.
+\end{remark}
+
+\begin{remark}[The full projectivization]\label{rem:full-space}
+Use the coefficients $\BB_m(A)$ and $\WW_m(A)$ of Theorem~\ref{thm:main}. If $Y=Y_0$ as complex spaces, that theorem is already a theorem on the full projectivization. This holds, for example, for the blow-up in Example~\ref{ex:blowup}. More generally let $i:Y_0\hookrightarrow Y$ be the closed immersion. Exactness of $i_*$ gives the always-valid identity
+\begin{equation}\label{eq:supported}
+ \RR\pi_*i_*\BB_m(A)=\WW_m(A),
+ \qquad H^q(Y,i_*\BB_m(A))=H^q(X,\WW_m(A)).
+\end{equation}
+Here the coefficient is supported on $Y_0$; the formula does not define a weighted canonical sheaf on all of $Y$.
+
+If a candidate coherent sheaf $C_m$ on the full space is equipped with a comparison $C_m\to i_*\BB_m(A)$, its cone $Q_m$ gives
+\begin{equation}\label{eq:full-defect}
+ \RR\pi_*C_m\longrightarrow\WW_m(A)\longrightarrow\RR\pi_*Q_m\xrightarrow{+1}.
+\end{equation}
+Thus $\RR\pi_*Q_m=0$ is the exact additional condition for this comparison to yield the same derived isomorphism. A comparison map and this vanishing both require proof; agreement over $U$ does not supply either automatically.
+\end{remark}
+
+\subsection{Consequences and vector-bundle formulas}
+\begin{corollary}[Scalar singularities]\label{cor:scalar}
+Suppose on $\widetilde X$ that $\widetilde h=h_0e^{-\varphi}$, where $h_0$ is smooth Griffiths semipositive and $\varphi$ is plurisubharmonic. Then
+\begin{align*}
+ \WW_m&=\mu_*\bigl(K_{\widetilde X}\otimes E_m
+                \otimes\II(e^{-(m+r)\varphi})\bigr),\\
+ \BB_m&=\nu_*\bigl(K_Z\otimes L^{m+r}
+                \otimes\II(e^{-(m+r)p^*\varphi})\bigr),
+\end{align*}
+and these sheaves satisfy the specialization of \eqref{eq:main-derived}--\eqref{eq:main-cohom} with $(A,k)=(\OO_{\widetilde X},1)$.
+\end{corollary}
+\begin{proof}
+The induced metric on $E_m$ is its smooth induced metric times $e^{-(m+r)\varphi}$. Smooth positive-definite bundle metrics are locally equivalent to the standard metric, so the multiplier submodule is $E_m\otimes\II(e^{-(m+r)\varphi})$. The same calculation on $L$ gives the second formula. Apply Theorem~\ref{thm:main} with $(A,k)=(\OO_{\widetilde X},1)$.
+\end{proof}
+
+\begin{corollary}[Stein bases and additional bundle coefficients]\label{cor:Stein}
+Under the hypotheses of Theorem~\ref{thm:main}, if $X$ is Stein, then
+$H^q(Y_0,\BB_m(A))=0$ for $q>0$. For every locally free sheaf $V$ on $X$,
+\[
+ \RR\pi_{0*}(\BB_m(A)\otimes\pi_0^*V)=\WW_m(A)\otimes V,
+\]
+and hence
+\[
+ H^q(Y_0,\BB_m(A)\otimes\pi_0^*V)
+       =H^q(X,\WW_m(A)\otimes V).
+\]
+\end{corollary}
+\begin{proof}
+Use the projection formula for locally free $V$, Theorem~\ref{thm:main}, and Cartan's theorem B.
+\end{proof}
+For a general coefficient complex, derived tensor products and the corresponding projection-formula hypotheses are required; the assertion does not silently discard Tor terms.
+
+We now specialize to vector bundles to recover the formulas of Liu--Liu--Yang--Zhou. Let $X$ be smooth, let $\FF=E$ be locally free with a singular Griffiths semipositive metric $h$, and choose $\mu=\mathrm{id}_X$. Then $Y_0=Z=\PP_X(E)$, $\nu$ is the identity, and $(A,k)=(\OO_X,1)$ in Theorem~\ref{thm:main} gives
+\begin{multline}\label{eq:recover-canonical}
+ \RR p_*\bigl(K_{\PP(E)}\otimes L^{m+r}\otimes\II(h_L^{m+r})\bigr)\\
+ \simeq K_X\otimes\MM(\Sym^mE\otimes\det E,
+                                   \Sym^mh\otimes\det h).
+\end{multline}
+Taking cohomology recovers the canonical determinant-twisted formula in \cite[Theorem 1.6(i)]{LLYZpre}. The notation $\PP(E^*)$ there denotes the same projective bundle as our quotient-convention $\PP_X(E)$.
+
+Under strong Nakano semipositivity, the determinant cancels and gives the symmetric-power formula.
+\begin{corollary}\label{cor:recover-LLYZ}
+Let $E$ be a holomorphic vector bundle on a complex manifold $X$ and let $h$ be strongly Nakano semipositive. For $m\geq1$, set
+\[
+ J_m=\II(h_L^{m+r}\otimes p^*(\det h)^{-1}).
+\]
+Then
+\begin{equation}\label{eq:recover-derived}
+ \RR p_*(L^m\otimes J_m)
+       \simeq\MM(\Sym^mE,\Sym^mh).
+\end{equation}
+For every holomorphic vector bundle $V$ on $X$ and every $q\geq0$,
+\begin{equation}\label{eq:recover-LLYZ}
+ H^q(X,V\otimes\MM(\Sym^mE,\Sym^mh))
+ \simeq H^q(\PP_X(E),p^*V\otimes L^m\otimes J_m).
+\end{equation}
+\end{corollary}
+\begin{proof}
+Set $\mu=\mathrm{id}_X$ in Corollary~\ref{cor:main-symmetric}. By \eqref{eq:relativeK},
+\[
+ K_{\PP(E)}\otimes L^{m+r}\otimes p^*(\det E)^{-1}
+       =p^*K_X\otimes L^m.
+\]
+The projection formula cancels the invertible factor $K_X$ and gives \eqref{eq:recover-derived}. Applying it again with $V$ and taking derived global sections proves \eqref{eq:recover-LLYZ}.
+\end{proof}
+This is \cite[Theorem 1.3(i)]{LLYZpre}. Here $\MM(\Sym^mE,\Sym^mh)$ is the multiplier submodule of the symmetric-power bundle, not $\Sym^m\MM(E,h)$. The inverse determinant metric is essential: tensoring \eqref{eq:recover-canonical} by $(\det E)^{-1}$ alone does not change its multiplier ideal or remove $\det h$ from the integrability condition.
+
+Choosing $V=\Omega_X^a$ and $m=1$ in \eqref{eq:recover-LLYZ} puts $p^*\Omega_X^a$ upstairs. Replacing it by $\Omega_{\PP(E)}^a$ requires a separate differential-form argument. In the unweighted case this is provided by Theorem~\ref{thm:intro-free}, proved next, and recovers the classical Le Potier isomorphism with no positivity assumption. For singular metrics, Example~\ref{ex:weighted-differentials} shows why the replacement cannot be made in general.
+
+\section{Differential forms and comparison defects}\label{sec:unweighted}
+\subsection{Differential-form isomorphisms for locally free sheaves}
+\begin{proof}[Proof of Theorem~\ref{thm:intro-free}]
+The assertion is local on $X$. On a trivializing open set $V$, write $\PP(E)|_V=V\times\PP^{r-1}$. The differential sheaf of a product decomposes, and exterior powers give
+\begin{equation}\label{eq:product-forms}
+ \Omega_{V\times\PP^{r-1}}^a
+ \simeq\bigoplus_{b=0}^{\min(a,r-1)}
+ \operatorname{pr}_1^*\Omega_V^{a-b}\otimes
+ \operatorname{pr}_2^*\Omega_{\PP^{r-1}}^b.
+\end{equation}
+This identity holds for K\"ahler differentials over a nonreduced base. The required projective-space computation is
+\[
+ H^j(\PP^{r-1},\OO(1))=0\ (j>0),\qquad
+ H^j(\PP^{r-1},\Omega^b(1))=0\ (1\leq b\leq r-1,\ j\geq0).
+\]
+It follows from the exterior Euler sequences and the cohomology of line bundles on projective space. The product projection is flat. The same relative projective-space calculation therefore holds with any coherent coefficient sheaf on $V$, even if that sheaf is not locally free: the finite-dimensional fiber cohomology is computed over $\CC$, and tensoring with a coefficient module preserves its split acyclic complexes. Thus no flatness assumption on $\Omega_V^{a-b}$ is needed. When $r=1$, the projective bundle is $V$ itself and the assertion is immediate.
+
+After twisting \eqref{eq:product-forms} by $\OO(1)$ and pushing forward, only $b=0,j=0$ remains. It is $\Omega_V^a\otimes E|_V$. The surviving map is intrinsically the map induced by $p^*\Omega_X^a\to\Omega_{\PP(E)}^a$ and $p^*E\to\OO(1)$. Hence the local isomorphisms glue, irrespective of the local splittings in \eqref{eq:product-forms}. Leray gives the cohomology isomorphism.
+\end{proof}
+
+\begin{remark}
+The theorem concerns $\Omega_X^a$, not the dualizing sheaf and not $\Omega_X^{[a]}=(\Omega_X^a)^{**}$. Even if $X$ is reduced, singularities can make these sheaves different. No assertion about their interchangeability is used.
+\end{remark}
+
+The same product argument extends to a multiplier ideal pulled back from the base.
+\begin{proposition}\label{prop:base-ideal}
+Let $X$ be a complex manifold, let $E$ be locally free, and put $p:Y=\PP_X(E)\to X$, $L=\OO_Y(1)$. If $J=\mathfrak a\OO_Y$ for a coherent ideal $\mathfrak a\subset\OO_X$, then, for every $a\geq0$,
+\[
+ \RR p_*(\Omega_Y^a\otimes L\otimes J)
+       \simeq\Omega_X^a\otimes E\otimes\mathfrak a.
+\]
+If $J=J_1$ in Corollary~\ref{cor:recover-LLYZ}, then $\MM(E,h)=E\otimes\mathfrak a$, and taking cohomology gives the corresponding weighted differential-form isomorphism.
+\end{proposition}
+\begin{proof}
+Flatness of $p$ identifies $\mathfrak a\OO_Y$ with $p^*\mathfrak a$. Repeat the local product calculation \eqref{eq:product-forms} with the extra coherent coefficient $\mathfrak a$; the natural surviving map glues as before. In the final assertion, the case $a=0$ and \eqref{eq:recover-derived} identify $\MM(E,h)$ with $E\otimes\mathfrak a$.
+\end{proof}
+
+\begin{corollary}[Scalar metric singularities in the locally free case]\label{cor:scalar-differentials}
+Let $X$ be smooth, $E$ locally free of rank $r$, and $h=h_0e^{-\varphi}$, where $h_0$ is smooth positive definite and $\varphi$ is plurisubharmonic. Then
+\[
+ \MM(E,h)=E\otimes\II(e^{-\varphi}),\qquad
+ \II(h_L^{r+1}\otimes p^*(\det h)^{-1})
+           =\II(e^{-\varphi})\OO_Y.
+\]
+Consequently the weighted differential-form isomorphism holds for every $a,q\geq0$. For $\varphi=0$ it is the classical isomorphism.
+\end{corollary}
+\begin{proof}
+The combined metric is its smooth induced metric multiplied by $e^{-p^*\varphi}$, since $(r+1)\varphi-r\varphi=\varphi$. Smooth positive factors do not change local integrability. In product coordinates a smooth projection pulls back this multiplier ideal by Fubini, giving the stated ideal. Apply Proposition~\ref{prop:base-ideal}. No positivity condition on $h_0$ is needed for this product argument.
+\end{proof}
+
+\subsection{Comparison defects for coherent sheaves}\label{sec:defects}
+The universal quotient and the differential pullback define a natural map
+\begin{equation}\label{eq:lambda}
+ \lambda_a:\Omega_X^a\otimes\FF\longrightarrow
+ \RR\pi_*(\Omega_Y^a\otimes\OO_Y(1)).
+\end{equation}
+Indeed the map first lands in $\pi_*(\Omega_Y^a\otimes\OO_Y(1))$, which is the zeroth cohomology sheaf of the right side; its canonical truncation map then gives \eqref{eq:lambda}. Let $\DD_a(\FF)$ be a mapping cone, with its associated distinguished triangle. Mapping cones are understood up to isomorphism; no strictly functorial choice in the triangulated category is needed.
+
+\begin{proposition}[Obstruction triangle]\label{prop:cone}
+There is a distinguished triangle
+\[
+ \Omega_X^a\otimes\FF\longrightarrow
+ \RR\pi_*(\Omega_Y^a\otimes\OO_Y(1))\longrightarrow
+ \DD_a(\FF)\xrightarrow{+1}.
+\]
+Its cohomology sheaves are
+\begin{align*}
+ \mathcal H^{-1}(\DD_a)&=\ker\lambda_a^0,&
+ \mathcal H^0(\DD_a)&=\operatorname{coker}\lambda_a^0,\\
+ \mathcal H^j(\DD_a)&=R^j\pi_*(\Omega_Y^a\otimes\OO_Y(1))\quad(j>0),
+\end{align*}
+and vanish in degrees below $-1$. All these sheaves vanish on the locally free locus of $\FF$. They are coherent, and the induced long exact sequence includes
+\begin{multline}\label{eq:hyperexact}
+ \cdots\to\mathbb H^{q-1}(X,\DD_a)\to
+ H^q(X,\Omega_X^a\otimes\FF)\to
+ H^q(Y,\Omega_Y^a\otimes\OO_Y(1))\\
+ \to\mathbb H^q(X,\DD_a)\to\cdots.
+\end{multline}
+\end{proposition}
+\begin{proof}
+The cohomology-sheaf assertions follow from the long exact sequence of the cone, and coherence follows from proper direct-image coherence. On the positive-rank locally free locus apply Theorem~\ref{thm:intro-free}; on an open set where $\FF=0$, the projectivization is empty and both sides of \eqref{eq:lambda} are zero. Applying derived global sections gives \eqref{eq:hyperexact}. All boundedness assertions here can be read locally on the base.
+\end{proof}
+
+Thus an isomorphism of the form \eqref{eq:classical} for general $\FF$ requires genuine information about $\DD_a(\FF)$. Codimension of its support alone does not annihilate its global hypercohomology.
+
+For symmetric powers, the comparison and higher-image defects have an explicit description in terms of graded local cohomology. For $m\geq0$ set $B_m=\pi_*\OO_Y(m)$. At $x\in X$, let $R=\OO_{X,x}$, $A=\Sym_R\FF_x$, and $A_+=\bigoplus_{m>0}A_m$. For algebraic projectivization and its section comparison, see also \cite{Stacks}. The graded Serre--Grothendieck correspondence yields
+\begin{equation}\label{eq:graded}
+ 0\to H^0_{A_+}(A)_m\to\Sym_R^m\FF_x
+ \xrightarrow{\alpha_m}(B_m)_x
+ \to H^1_{A_+}(A)_m\to0,
+\end{equation}
+and
+\begin{equation}\label{eq:highergraded}
+ (R^j\pi_*\OO_Y(m))_x\simeq H^{j+1}_{A_+}(A)_m\quad(j>0).
+\end{equation}
+For clarity, we record the comparison needed to interpret these formulas analytically.
+\begin{lemma}\label{lem:germ-comparison}
+Let $R=\OO_{X,x}$ and let $A$ be a finitely presented standard graded $R$-algebra. If $Y\to X$ is the projective analytic germ obtained from a homogeneous presentation of $A$, then
+\[
+ H^j(\Proj_R A,\OO(m))\simeq(R^j\pi_*\OO_Y(m))_x.
+\]
+For $j=0$, this identification respects the canonical map from $A_m$.
+\end{lemma}
+\begin{proof}
+Choose a homogeneous presentation over $S=R[T_0,\ldots,T_N]$. A finite graded module over the Noetherian ring $S$ admits a resolution, possibly infinite, by finite sums of graded shifts of $S$. For any fixed nonnegative cohomological degree, a finite segment of length greater than $N$ suffices: the remaining left syzygy has sheaf cohomology only in degrees at most $N$, so after its homological shift it contributes only in negative total degrees. The segment computes the required nonnegative projective cohomology by dimension shifting.
+
+The finitely many matrices in this segment have coefficients represented by holomorphic functions on a common neighborhood of $x$. Analytic sheafification on projective charts is exact by flatness of the local analytic extension of polynomial local rings; see the local analytic algebra framework in \cite{GrauertRemmert}. After shrinking the neighborhood, the sheafified segment is exact along the whole compact projective fiber. Indeed its finitely many coherent homology sheaves vanish there, and their closed supports can be avoided over a common neighborhood by properness. The algebraic and analytic cohomology calculations for each ambient twist $\OO_{\PP^N}(b)$ agree: both are the usual projective-space calculation with coefficients in the base local ring. Applying dimension shifting to the finite segment proves the assertion. The construction starts with the same augmentation from homogeneous sections, so the degree-zero maps agree.
+\end{proof}
+
+To obtain \eqref{eq:graded}--\eqref{eq:highergraded}, apply the augmented homogeneous localization complex
+\[
+ 0\longrightarrow A\longrightarrow\prod_i A_{T_i}
+ \longrightarrow\prod_{i<j}A_{T_iT_j}\longrightarrow\cdots.
+\]
+It computes $H^\bullet_{A_+}(A)$. After deleting its initial term and taking degree $m$, it is the algebraic \v Cech complex for $\OO(m)$ on $\Proj_R A$. Its long exact sequence gives the formulas, and Lemma~\ref{lem:germ-comparison} identifies their analytic stalks. In particular, $\Proj_R A$ is a model over a local ring, not the fiber over $x$; no identification of analytic chart rings with homogeneous localizations is required.
+
+Equations \eqref{eq:graded}--\eqref{eq:highergraded} identify three possible obstructions: a kernel, a section-space cokernel, and higher direct images. Saturating the homogeneous equations removes the first, but need not remove the second or third.
+
+\begin{proposition}[Asymptotic comparison]\label{prop:asymptotic}
+For any coherent $\FF$ on any complex space $X$ and every compact subset $K\subset X$, there are a neighborhood $V$ of $K$ and $m_0\geq0$ such that, for $m\geq m_0$,
+\[
+ \Sym^m\FF|_V\simeq(\pi_*\OO_Y(m))|_V,
+ \qquad (R^j\pi_*\OO_Y(m))|_V=0\quad(j>0).
+\]
+For compact $X$, this gives
+\[
+ H^q(X,\Sym^m\FF)\simeq H^q(Y,\OO_Y(m))\quad(m\geq m_0).
+\]
+\end{proposition}
+\begin{proof}
+Work locally with $Y\hookrightarrow P=V\times\PP^{N-1}$ and ideal $J$. The linear presentation gives an exact sequence
+\[
+ 0\to Q\to\OO_P(-1)^s\to J\to0.
+\]
+For sufficiently large $m$, relative analytic Serre vanishing gives $R^1p_*Q(m)=R^1p_*J(m)=0$. The first vanishing identifies
+\[
+ p_*J(m)=\operatorname{im}\!\left(
+ \OO_V^s\otimes\Sym^{m-1}\OO_V^N
+       \longrightarrow\Sym^m\OO_V^N\right),
+\]
+the degree-$m$ homogeneous relations. The second vanishing and the sequence $0\to J(m)\to\OO_P(m)\to\OO_Y(m)\to0$ identify the quotient with $\Sym^m\FF$. Relative vanishing applied to $\OO_Y(m)$ gives the higher-image assertion. A finite cover of $K$ gives one bound. The relative analytic vanishing theorem used here is \cite[IV, Theorem 2.1]{Banica}.
+\end{proof}
+
+This result is an asymptotic formula for symmetric powers. It does not prove an analogous high-twist identity with $\Omega_Y^a$ when $a>0$, since positive relative differential forms can then acquire sections.
+
+Normality gives a sharper comparison after taking reflexive hulls.
+\begin{proposition}[Normal-base comparison]\label{prop:normal}
+Suppose $X$ is normal and locally irreducible, and $\FF$ is torsion-free of positive rank. Then
+\[
+ (\Sym^m\FF)^{**}\simeq(\pi_*\OO_Y(m))^{**}\quad(m\geq0).
+\]
+If $\FF$ is reflexive, there is a canonical splitting
+\begin{equation}\label{eq:splitting}
+ \pi_*\OO_Y(1)\simeq\FF\oplus\Tor_X(\pi_*\OO_Y(1)).
+\end{equation}
+On the reduced main component, $\pi_{0*}L_0\simeq\FF$ for reflexive $\FF$.
+\end{proposition}
+\begin{proof}
+The locally free locus contains a big open set $j:U\hookrightarrow X$ whose complement has codimension at least two. Restriction defines
+\[
+ B_m\longrightarrow j_*\Sym^m(\FF|_U)=(\Sym^m\FF)^{**}.
+\]
+Its kernel is exactly base torsion. Both double duals extend the same bundle across a codimension-two subset, giving the first assertion. For $m=1$ and reflexive $\FF$, its composite with $\alpha_1$ is the identity on $\FF$, giving \eqref{eq:splitting}. On $Y_0$, a section of $L_0$ that vanishes generically is zero because $Y_0$ is reduced and irreducible. Thus the direct image on $Y_0$ is torsion-free and the same splitting has zero torsion summand.
+\end{proof}
+
+The last assertion gives no higher-direct-image vanishing. Nor does \eqref{eq:splitting} prove that its torsion summand always vanishes on the full projectivization.
+
+\section{Examples and limits of the extension}\label{sec:examples}
+\subsection{Weighted differentials for a locally free bundle}
+We first isolate an obstruction already present for a vector bundle on a smooth base. The differential-form assertion in \cite[Theorem 1.3(ii)]{LLYZpre} predicts equality of the two cohomology groups below. All metric values and multiplier ideals use the squared-norm convention of Subsection~\ref{sec:integrability}.
+\begin{example}\label{ex:weighted-differentials}
+Let $\Delta$ be the unit disc with coordinate $z$, let
+$E=\OO_\Delta e_1\oplus\OO_\Delta e_2$, and give it the singular metric
+\[
+ h=\begin{pmatrix}|z|^{-2}&0\\0&|z|^{-4}\end{pmatrix}.
+\]
+Then $h$ is strongly Nakano semipositive in the definition of
+\cite{LLYZpre}. With $Y=\Delta\times\PP^1$, $L=\OO_{\PP^1}(1)$, and
+$J=\II(h_L^3p^*(\det h)^{-1})$, one has
+\begin{align}
+ H^1(\Delta,\Omega_\Delta^1\otimes\MM(E,h))&=0,\label{eq:leftzero}\\
+ H^1(Y,\Omega_Y^1\otimes L\otimes J)&\simeq\CC^3.\label{eq:rightthree}
+\end{align}
+\end{example}
+
+\begin{proof}
+\emph{Metric hypotheses.}
+The dual norm of a holomorphic section $u=(u_1,u_2)$ is
+\[
+ |u|_{h^*}^2=|zu_1|^2+|z^2u_2|^2.
+\]
+It has the required plurisubharmonic property, as does its logarithm.
+Thus $h$ is Griffiths semipositive, and
+$0<\det h=|z|^{-6}<\infty$ almost everywhere.
+Values on $z=0$ are interpreted by the singular metric representatives;
+they do not change the integrability conditions.
+
+On the projective chart $[\xi_1:\xi_2]=[w:1]$, the frame of $L$ defined
+by the image of $e_2$ has squared norm
+\[
+ h_L=(|z|^2|w|^2+|z|^4)^{-1}.
+\]
+Consequently, almost everywhere,
+\begin{equation}\label{eq:metriccounter}
+ \kappa:=h_L^3p^*(\det h)^{-1}
+          =(|w|^2+|z|^2)^{-3}.
+\end{equation}
+The weight $3\log(|w|^2+|z|^2)$ is plurisubharmonic. On the other chart
+$[1:v]$ the corresponding weight is $3\log(1+|zv|^2)$, also
+plurisubharmonic, with the correct line-bundle transition. Hence
+$\kappa$ is a semipositive singular metric on
+$L^3\otimes p^*(\det E)^{-1}$, proving strong Nakano semipositivity.
+
+\emph{Multiplier ideal.}
+The only singular point of $\kappa$ is $P=(0,[0:1])$.
+If a nonzero holomorphic germ at $P$ has lowest total degree $d$, its
+weighted integral near $P$ has radial integrability condition
+\[
+ \int_0^\varepsilon \rho^{2d-6}\rho^3\,d\rho<\infty
+ \quad\Longleftrightarrow\quad d\geq2.
+\]
+Orthogonality of homogeneous terms on spheres justifies this test for a
+general germ. Therefore
+\begin{equation}\label{eq:J}
+ J=\mathfrak m_P^2,\qquad
+ (\OO_Y/J)_P\simeq\CC\{z,w\}/(z,w)^2,
+\end{equation}
+a quotient of length three, with basis $1,z,w$.
+
+\emph{Downstairs cohomology.}
+One-variable integrability gives
+$\MM(E,h)=z\OO_\Delta e_1\oplus z^2\OO_\Delta e_2$.
+This is coherent, so Cartan's theorem B proves \eqref{eq:leftzero}.
+
+\emph{Upstairs cohomology.}
+On the product,
+\[
+ \Omega_Y^1\otimes L\otimes J
+ \simeq (p^*\Omega_\Delta^1\otimes L\otimes J)
+                  \oplus(\OO_{\PP^1}(-1)\otimes J).
+\]
+For the second summand use
+\[
+ 0\longrightarrow\OO(-1)\otimes J\longrightarrow\OO(-1)
+ \longrightarrow\OO(-1)\otimes\OO_Y/J\longrightarrow0.
+\]
+Both $p_*\OO(-1)$ and $R^1p_*\OO(-1)$ vanish. Thus
+\begin{equation}\label{eq:torsion}
+ R^1p_*(\OO(-1)\otimes J)
+ \simeq p_*(\OO(-1)\otimes\OO_Y/J)
+ \simeq \OO_\Delta/(z^2)\oplus\OO_\Delta/(z),
+\end{equation}
+where the last identification is after choosing a local frame at $P$.
+
+The first summand has zero higher direct image. Indeed, in the sequence
+for $0\to L\otimes J\to L\to L\otimes\OO_Y/J\to0$,
+$p_*L=\OO_\Delta^2$ maps surjectively to the quotient: sections
+$a(z)w+b(z)$ span the three jets $w,1,z$. Hence
+$R^1p_*(L\otimes J)=0$. Steinness of $\Delta$ and Leray now identify
+the full cohomology in \eqref{eq:rightthree} with the three-dimensional
+space of global sections of \eqref{eq:torsion}.
+\end{proof}
+
+\begin{remark}[Smooth approximation of the counterexample]
+The metric in Example~\ref{ex:weighted-differentials} is also the increasing
+limit, as $\varepsilon\downarrow0$, of smooth strongly Nakano
+semipositive metrics
+\[
+ h_\varepsilon=\operatorname{diag}
+ \bigl((|z|^2+\varepsilon)^{-1},(|z|^2+\varepsilon)^{-2}\bigr).
+\]
+Their compensated weights are
+$3\log(|w|^2+|z|^2+\varepsilon)$ and
+$3\log(1+|zv|^2+\varepsilon|v|^2)$ on the two projective charts.
+Their dual metrics are Griffiths seminegative, since the squared norms
+are sums of squared holomorphic functions with positive constant
+coefficients. Thus the example also has smooth semipositive approximants
+in precisely the relevant positivity class.
+\end{remark}
+
+\begin{remark}[What fails in the proposed inference]
+In \cite[Lemma 3.10(ii)]{LLYZpre}, the proof uses vanishing
+on generic fibers to conclude vanishing of the higher direct image
+with $\Omega_Y^a$ coefficients. Generic vanishing only implies that
+this higher direct image is supported on a proper analytic subset.
+The nonzero torsion sheaf \eqref{eq:torsion} is precisely such a
+possibility. Canonical torsion-freeness cannot be transferred to these
+differential-form coefficients without an additional argument.
+\end{remark}
+
+\begin{remark}[The other weighted differential assertion]
+The determinant-twisted differential assertion in
+\cite[Theorem 1.6(ii)]{LLYZpre} also fails. Take instead
+$h_0=\operatorname{diag}(1,|z|^{-2})$ on the same trivial bundle.
+This metric is Griffiths semipositive, and in the chart $[w:1]$,
+$h_{0,L}^3=(|w|^2+|z|^2)^{-3}$. Its multiplier ideal is again
+$\mathfrak m_P^2$. Since $\det E$ is holomorphically trivial,
+the same upstairs calculation applies, whereas the downstairs
+degree-one cohomology is zero on the Stein disc.
+The canonical and symmetric-power assertions are unaffected by these
+counterexamples.
+\end{remark}
+
+\subsection{The role of local freeness and reducedness}
+\begin{example}\label{ex:blowup}
+Let $X=\CC^2$, let $o$ be the origin, and let $\FF=\mathfrak m_o=(x,y)$. The ideal is torsion-free of rank one and is of linear type. Its full projectivization is the blow-up
+\[
+ \pi:Y=\operatorname{Bl}_oX\to X,
+ \qquad L=\OO_Y(1)=\OO_Y(-D),
+\]
+where $D$ is the exceptional curve. Both $X$ and $Y$ are smooth, and
+\[
+ K_Y=\pi^*K_X\otimes\OO_Y(D),\qquad
+ K_Y\otimes L=\pi^*K_X.
+\]
+It follows that
+\begin{equation}\label{eq:counter-form}
+ \pi_*(\Omega_Y^2\otimes L)=K_X,
+ \qquad\Omega_X^2\otimes\FF=K_X\otimes\mathfrak m_o.
+\end{equation}
+The natural comparison is the proper inclusion on the right into $K_X$.
+
+For completeness, on the blow-up chart $y=xv$, a local generator of $L$ corresponds to $x$, and $dx\wedge dy=x\,dx\wedge dv$. Under the canonical identification $K_Y\otimes L\simeq\pi^*K_X$, the image of $g\,dx\wedge dy$, with $g\in\mathfrak m_o$, is precisely $g\,dx\wedge dy$. Thus the missing section is already visible locally; this is a failure of the canonical map, not merely of a proposed proof. In contrast, $\pi_*L=\mathfrak m_o$ and $R^j\pi_*L=0$ for $j>0$. Degree-zero tautological comparison therefore does not settle differential-form comparison.
+
+This example also tests the weighted theorem. Take $\mu=\pi$, so $E=\OO_Y(-D)$ has a smooth semipositive quotient metric from the surjection $\OO_Y^2\twoheadrightarrow\OO_Y(-D)$. Since $r=1$,
+\[
+ \WW_m=\mu_*(K_Y\otimes E^{m+1})
+       =K_X\otimes\mathfrak m_o^m\quad(m\geq0).
+\]
+Here $Z=\PP_Y(E)=Y$ and $\nu$ is the identity, so the weighted formula is consistent with the explicit blow-up computation. Finally, $\det_{\tf}\FF=\mathfrak m_o$ whereas $\FF^{**}=\OO_X$; their torsion-free pullbacks are $\OO_Y(-D)$ and $\OO_Y$. This verifies the determinant warning in Lemma~\ref{lem:det}.
+\end{example}
+
+The preceding example shows why local freeness matters for differential forms. The following example explains why the weighted resolution-based construction also requires a reduced base.
+\begin{example}
+Let $X$ be the zero-dimensional complex space with ring $\CC[\epsilon]/(\epsilon^2)$, and take $E=\OO_X$. Then $\PP_X(E)=X$ and all the unweighted locally free identities retain the nilpotent $\epsilon$. A construction that first replaces $X$ by $X_{\mathrm{red}}$ has direct image annihilated by $\epsilon$ and cannot recover $\OO_X$. A resolution-based GR construction on the reduction is therefore not an extension that retains the full nonreduced structure. Theorem~\ref{thm:intro-free} and Proposition~\ref{prop:asymptotic} apply to this structure; Theorem~\ref{thm:main} explicitly assumes a reduced irreducible base.
+\end{example}
+
+\subsection{A reflexive sheaf on a nonnormal curve}
+\begin{proposition}\label{prop:nonnormal}
+Let $X$ be a sufficiently small representative of the curve germ
+\[
+ R=\frac{\CC\{t,x,y,z\}}{(x^2-t^3,\ y^2-t^2x,\ z^2-t^2y)},
+ \qquad\mathfrak m=(t,x,y,z),
+\]
+and let $\FF$ be the ideal of the origin. Then $\FF$ is reflexive of rank one, but $\alpha_1:\FF\to\pi_*\OO_{\PP_X(\FF)}(1)$ is not surjective. Nevertheless,
+\[
+ R^j\pi_*\OO_{\PP_X(\FF)}(m)=0\qquad(m\geq0,\ j>0).
+\]
+\end{proposition}
+\begin{proof}
+Successive division by the monic equations gives the $\CC\{t\}$-basis
+\[
+ 1,x,y,xy,z,xz,yz,xyz.
+\]
+Under $(t,x,y,z)=(u^8,u^{12},u^{14},u^{15})$, the exponents of these basis elements are distinct modulo $8$. Thus the resulting map into $\CC\{u\}$ is injective, and $R$ is a one-dimensional domain. The element $b=xyz/t$ is not in $R$: otherwise $xyz$ would vanish in
+\[
+ R/tR=\CC\{x,y,z\}/(x^2,y^2,z^2).
+\]
+However, $tb=xyz$, $xb=t^2yz$, $yb=tx^2z$, and $zb=txy^2$ all belong to $R$. Hence $1,b\in(R:\mathfrak m)$. If $a\in\mathfrak m^{**}=(R:(R:\mathfrak m))$, then $a\in R$ and $ab\in R$. Such an $a$ cannot be a unit, so $a\in\mathfrak m$. The reverse inclusion is canonical, proving reflexivity. The ideal is invertible away from the origin.
+
+Write $[T_0:T_1:T_2:T_3]$ for the coordinates of $\PP(\mathfrak m)$. Its relation module is generated by the Koszul relations on $(t,x,y,z)$ and the vectors representing the three defining equations. To see this, lift a relation to $\CC\{t,x,y,z\}$ and subtract multiples of those three vectors. What remains is a relation on the regular sequence $(t,x,y,z)$, hence a Koszul relation.
+
+On $T_0\neq0$, put $a=T_1/T_0$, $c=T_2/T_0$, $d=T_3/T_0$. Eliminating $x,y,z$ gives precisely
+\[
+ t(a^2-t)=t(c^2-ta)=t(d^2-tc)=0.
+\]
+Let $W$ be defined by $a^2=t$, $c^2=ta$, $d^2=tc$. Its parametrization is $(t,a,c,d)=(u^8,u^4,u^6,u^7)$, and the same residue-class argument proves its local ring is a domain. Its coordinates are integral over $R$, so $W\to X$ is finite. Its map into $\PP(\mathfrak m)$ is proper over $X$ and therefore closed. On the chart outside $W$ one of the three parenthetical factors is invertible, forcing $t=0$. Consequently $tacdT_0$ extends by zero to a section of $\OO(1)$ on the whole projectivization. If this section were $\alpha_1(g)$, generic comparison, where $t$ generates $\mathfrak m$, would give $g=t^2acd=xyz/t\notin R$. This proves nonsurjectivity. Injectivity follows from torsion-freeness and generic comparison.
+
+To prove higher vanishing, let $V=\pi^{-1}(0)\simeq\PP^3$. On the $T_0$ chart set $J=(a^2-t,c^2-ta,d^2-tc)$. Since $t$ is a non-zero-divisor modulo $J$, $(t)\cap J=tJ$. Thus the actual analytic structure there is the union $V\cup W$. At a boundary point with $T_0=0$, at least one of $T_1,T_2,T_3$ is nonzero. If, for instance, $T_1\neq0$, the Koszul relations and $xT_1-t^2T_0=0$ give
+\[
+ x\bigl(1-x(T_0/T_1)^3\bigr)=0.
+\]
+The second factor is a unit near the central fiber, so all base coordinates vanish. The $T_2$ and $T_3$ charts give the same conclusion using their corresponding defining relations. After shrinking $X$, there is no additional structure outside the $T_0$ chart. Hence $Y=V\cup W$ with intersection
+\[
+ Z_0=\operatorname{Spec}\CC[a,c,d]/(a^2,c^2,d^2).
+\]
+The union sequence, twisted by $\OO(m)$, is
+\[
+ 0\to\OO_Y(m)\to\OO_V(m)\oplus\OO_W(m)\to\OO_{Z_0}(m)\to0.
+\]
+The maps from $W$ and $Z_0$ to $X$ are finite. Restriction from $W$ to $Z_0$ stays surjective after direct image. Together with $H^j(\PP^3,\OO(m))=0$ for $m\geq0,j>0$, the long exact sequence proves the claimed vanishing.
+\end{proof}
+
+\subsection{Higher-image failure on a normal surface}
+We now give normal examples with the opposite behavior. The construction is algebraic over $\CC$ until passage to the analytic germ is made explicitly. Fix an integer $s\geq3$, put $\lambda_i=2i-1$, $\eta_i=2i$, and define
+\begin{equation}\label{eq:cone-ring}
+ R=\frac{\CC[t,u,x_1,\ldots,x_s]}
+ {(x_i^2-(u-\lambda_it)(u-\eta_it):1\leq i\leq s)}.
+\end{equation}
+All variables have degree one. Set $X=\operatorname{Spec}R$, let $o$ be its vertex, and write
+\[
+ C=\Proj R,\quad B=\OO_C(1),\quad
+ p_0=[0:1:1:\cdots:1],\quad I=(t,x_1-u,\ldots,x_s-u).
+\]
+\begin{lemma}\label{lem:cone}
+The curve $C$ is smooth and irreducible, and $X$ is a normal surface smooth away from $o$. The ideal $I$ is reflexive of rank one, and
+\[
+ \deg B=2^s,\qquad K_C=B^{s-2},\qquad
+ g(C)=1+(s-2)2^{s-1}.
+\]
+\end{lemma}
+\begin{proof}
+The ring $R$ is free over $\CC[t,u]$ on the square-free monomials in the $x_i$. The square classes of $(u-\lambda_it)(u-\eta_it)$ in $\CC(t,u)^*/\CC(t,u)^{*2}$ are independent, since the valuation along $u-\lambda_it=0$ is odd precisely for the $i$th class. Thus the generic algebra is a field of degree $2^s$. The free module $R$ injects into this field, proving it is a domain.
+
+On $C$, $t$ and $u$ cannot both vanish. At most one $x_i$ vanishes at a point, since all branch values are distinct. When none vanishes, the derivatives $2x_i$ give full Jacobian rank. When $x_i=0$, its quadratic in $(t,u)$ has a simple root; its nonzero derivative in a base direction, together with the remaining derivatives $2x_j$, again gives full rank. Hence $C$ and the punctured cone are smooth. The equations form a regular sequence, so $R$ is Cohen--Macaulay, and the $R_1+S_2$ criterion proves normality. The degree and adjunction formulas give $\deg B=2^s$ and $K_C=B^{2s-(s+2)}$.
+
+Finally $R/I\simeq\CC[u]$. At $o$, the depth lemma applied to $0\to I\to R\to R/I\to0$ gives depth $I_o=2$. Away from $o$, $I$ is the ideal of a smooth Cartier divisor in a smooth surface. Thus $I$ is torsion-free and satisfies $S_2$, hence is reflexive.
+\end{proof}
+
+\begin{lemma}\label{lem:cone-union}
+Let $Y=\PP_X(I)$ and $A=B(-p_0)$. Then $Y$ is reduced and has the scheme-theoretic decomposition
+\begin{equation}\label{eq:union}
+ Y=V\cup W,\qquad V\simeq\PP^s,\qquad
+ W\simeq\operatorname{Tot}_C(B^{-1}),\qquad V\cap W\simeq C.
+\end{equation}
+The component $V$ lies over $o$, and, for $q:W\to C$,
+\[
+ \OO_Y(1)|_V=\OO_{\PP^s}(1),\qquad\OO_Y(1)|_W=q^*A.
+\]
+The embedding $C\hookrightarrow V$ is given by the complete linear system $|A|$.
+\end{lemma}
+\begin{proof}
+Set $z_i=x_i-u$, $a_i=\lambda_i\eta_i$, and $b_i=\lambda_i+\eta_i$. The equations of $X$ become
+\[
+ z_i^2+2uz_i+b_iut-a_it^2=0.
+\]
+The Koszul relations on $(t,z_1,\ldots,z_s)$ describe the total space of $\OO_{\PP^s}(-1)\oplus\OO_{\PP^s}$: in homogeneous coordinates $[T_0:\cdots:T_s]$, write $t=\tau T_0$, $z_i=\tau T_i$, with $u$ the second fiber coordinate. Lifting a relation to the ambient polynomial ring and subtracting multiples of the displayed equations shows, as in Proposition~\ref{prop:nonnormal}, that the remaining relations are exactly
+\begin{equation}\label{eq:matrix-equations}
+ \tau Q_i+u\ell_i=0,
+ \qquad Q_i=T_i^2-a_iT_0^2,\quad\ell_i=2T_i+b_iT_0.
+\end{equation}
+This computes the full symmetric algebra, before taking any radical.
+
+The rows $(Q_i,\ell_i)$ define a bundle morphism
+\[
+ \OO_{\PP^s}(-1)\oplus\OO_{\PP^s}
+       \longrightarrow\OO_{\PP^s}(1)^{\oplus s}.
+\]
+Let $D\subset\PP^s$ be its rank-at-most-one locus. The matrix has no rank-zero point. Indeed, if all $\ell_i=0$, then $T_0\neq0$, and with $T_0=1$ one has
+\[
+ Q_i=b_i^2/4-a_i=(\lambda_i-\eta_i)^2/4\neq0.
+\]
+Its projective kernel is therefore isomorphic to $D$ as a scheme. A nonzero kernel vector $(\tau,u)$ determines the point
+\[
+ [\tau T_0:u:u+\tau T_1:\cdots:u+\tau T_s]\in C.
+\]
+For $\tau\neq0$ this map is inverse to projection from $p_0$ by $[t:z_1:\cdots:z_s]$. For $\tau=0$, the unique possible point of $D$ is $[1:-b_1/2:\cdots:-b_s/2]$. In the chart $T_0=u=1$, the equations are
+\[
+ \tau(T_i^2-a_i)+2T_i+b_i=0.
+\]
+Their Jacobian with respect to the $T_i$ at $\tau=0$ is $2$ times the identity. The kernel incidence curve is smooth there with parameter $\tau$, and its map to $C$ sends the local parameter $t/u$ to $\tau$. This proves $D\simeq C$, including at $p_0$.
+
+The sections $t,z_1,\ldots,z_s$ of $B$ have common zero exactly $p_0$, with $t$ a simple zero there. The induced bundle is $A=B(-p_0)$. The Koszul resolution of the complete intersection gives $h^0(C,B)=s+2$, and evaluation at $p_0$ has rank one. Thus these $s+1$ sections form a basis of $H^0(C,A)$, proving completeness of the embedding.
+
+Off $D$, two independent equations in \eqref{eq:matrix-equations} force $\tau=u=0$. Near $D$, eliminate one fiber coordinate by a unit matrix entry. The remaining equations have the form $v d_j=0$, where the $d_j$ generate the ideal of $D$ and $v$ is an independent fiber coordinate. Therefore
+\[
+ (v)\cap(d_1,\ldots,d_{s-1})=v(d_1,\ldots,d_{s-1}).
+\]
+The local structure is the reduced union of the zero section and the kernel line bundle over $D$. The map sending $(\tau,u)$ to $(\tau T_0,u,u+\tau T_1,\ldots,u+\tau T_s)$ identifies the latter line bundle with $B^{-1}$. Its zero section is the intersection, and projection to $\PP^s$ gives the stated tautological restrictions. This proves all assertions with the actual scheme structure.
+\end{proof}
+
+\begin{proposition}\label{prop:normal-example}
+For the family \eqref{eq:cone-ring}, and every $m\geq0$,
+\begin{equation}\label{eq:normalexample}
+ H^1(Y,\OO_Y(m))=\bigoplus_{k\geq1}H^1(C,A^m\otimes B^k),
+ \qquad H^j(Y,\OO_Y(m))=0\quad(j\geq2).
+\end{equation}
+For $s=4$, the associated rank-one reflexive sheaf satisfies
+\begin{equation}\label{eq:normal-counterexample}
+ \pi_*\OO_Y(1)=\widetilde I,\qquad R^1\pi_*\OO_Y(1)=\CC_o.
+\end{equation}
+The least nonnegative integer $b$ such that $R^j\pi_*\OO_Y(m)=0$ for all $m\geq b$ and $j>0$ is $b=s-2$. These assertions also hold on the corresponding complex analytic germs.
+\end{proposition}
+\begin{proof}
+The union \eqref{eq:union} gives, with closed-immersion direct images understood,
+\[
+ 0\to\OO_Y(m)\to\OO_V(m)\oplus q^*A^m\to A^m|_C\to0.
+\]
+Since $q$ is affine, $q_*\OO_W=\bigoplus_{k\geq0}B^k$, and
+\[
+ H^j(W,q^*A^m)=\bigoplus_{k\geq0}H^j(C,A^mB^k).
+\]
+Cohomology commutes with this sum, as a finite affine cover of the separated curve computes it. Restriction to the zero section is projection onto $k=0$, hence is surjective in degrees zero and one. Combining this with higher vanishing for $\OO_{\PP^s}(m)$ proves \eqref{eq:normalexample}. Since $X$ is affine, these groups are the modules of the higher direct images. They are supported at $o$ and have finite length.
+
+Serre duality gives
+\begin{equation}\label{eq:dual-summands}
+ H^1(C,A^mB^k)^*=H^0(C,B^{s-2-m-k}(mp_0)).
+\end{equation}
+For $s=4,m=1,k=1$, this is $H^0(C,\OO_C(p_0))=\CC$. Indeed a second independent section would give a degree-one meromorphic map to $\PP^1$, whereas $g(C)=17$. For $k\geq2$, the bundle in \eqref{eq:dual-summands} has negative degree. Multiplication by a positive-degree base function raises $k$, so the maximal ideal of $o$ annihilates the one-dimensional cohomology module. This proves the second assertion of \eqref{eq:normal-counterexample}.
+
+The restriction-and-extension proof of Proposition~\ref{prop:normal} works also for normal algebraic schemes and splits $\pi_*\OO_Y(1)$ as $\widetilde I$ and its base-torsion subsheaf. A torsion section vanishes on $W$, so the union sequence identifies it with a section of $\OO_{\PP^s}(1)$ vanishing on $D$. The complete system $|A|$ is nondegenerate, hence there are no such sections. This proves the first assertion.
+
+For the threshold, $m=s-3,k=1$ gives $H^0(C,\OO_C((s-3)p_0))\neq0$. If $m\geq s-2$ and $k\geq1$, the degree of the bundle in \eqref{eq:dual-summands} is
+\[
+ (s-2-m-k)2^s+m\leq-2^s+s-2<0.
+\]
+The inequality persists as $m$ increases, because its coefficient is $1-2^s<0$. Thus all higher images vanish exactly in the asserted tail.
+
+Finally pass from the algebraic local ring at $o$ to the local analytic ring defined by the same polynomial equations. This extension is faithfully flat. Proper flat base change, followed by Lemma~\ref{lem:germ-comparison}, identifies both the comparison maps and the higher images with their analytic counterparts. A nonzero finite-length module remains nonzero. Normality of the analytic germ also follows directly from the isolated complete-intersection singularity and the $R_1+S_2$ criterion.
+\end{proof}
+
+Taking $s=N+3$ gives $R^1\pi_*\OO_Y(N)\neq0$ for any prescribed $N\geq1$, with base dimension two and sheaf rank one fixed. The fiber over $o$ is $\PP^s$, but its ordinary cohomology alone does not compute these higher direct images in the nonflat family. The positive normal-direction terms $k\geq1$ in \eqref{eq:normalexample} are essential. The calculation concerns $\OO_Y(m)$, not the weighted canonical coefficient in Theorem~\ref{thm:main}.
+
+\begin{thebibliography}{99}
+\bibitem{Banica}
+C. B\u anic\u a and O. St\u an\u a\c sil\u a,
+\emph{Algebraic Methods in the Global Theory of Complex Spaces},
+Editura Academiei, Bucharest, and John Wiley \& Sons, London, 1976;
+Chapter IV, especially \S1(c) and Theorem 2.1.
+
+\bibitem{GrauertRemmert}
+H. Grauert and R. Remmert, \emph{Coherent Analytic Sheaves}, Grundlehren der mathematischen Wissenschaften 265, Springer-Verlag, Berlin, 1984.
+\href{https://doi.org/10.1007/978-3-642-69582-7}{doi:10.1007/978-3-642-69582-7}.
+
+\bibitem{GR}
+H. Grauert and O. Riemenschneider, Verschwindungss\"atze f\"ur analytische Kohomologiegruppen auf komplexen R\"aumen,
+\emph{Invent. Math.} \textbf{11} (1970), 263--292.
+\href{https://doi.org/10.1007/BF01403182}{doi:10.1007/BF01403182}.
+
+\bibitem{Grothendieck}
+A. Grothendieck, Techniques de construction en g\'eom\'etrie analytique. V. Fibr\'es vectoriels, fibr\'es projectifs, fibr\'es en drapeaux,
+\emph{S\'eminaire Henri Cartan} \textbf{13} (1960--1961), expos\'e no. 12, 1--15.
+
+\bibitem{LePotier}
+J. Le Potier, Annulation de la cohomologie \`a valeurs dans un fibr\'e vectoriel holomorphe positif de rang quelconque,
+\emph{Math. Ann.} \textbf{218} (1975), 35--53.\newline\href{https://doi.org/10.1007/BF01350066}{doi:10.1007/BF01350066}.
+
+\bibitem{LLYZ}
+Y. Liu, Z. Liu, H. Yang, and X. Zhou,
+A Le Potier-type isomorphism twisted with multiplier submodule sheaves,
+\emph{J. Math. Pures Appl.} \textbf{202} (2025), article 103760.
+\href{https://doi.org/10.1016/j.matpur.2025.103760}{doi:10.1016/j.matpur.2025.103760}.
+
+\bibitem{LLYZpre}
+Y. Liu, Z. Liu, H. Yang, and X. Zhou,
+\emph{A Le Potier-type isomorphism twisted with multiplier submodule sheaves},
+arXiv:2405.07261v1, 12 May 2024.
+\href{https://arxiv.org/html/2405.07261v1}{Version-specific full text}.
+We use this version for the numbering and precise statements discussed in
+Sections~\ref{sec:recovery} and \ref{sec:examples}.
+
+\bibitem{Matsumura}
+S. Matsumura, Injectivity theorems with multiplier ideal sheaves for higher direct images under K\"ahler morphisms,
+\emph{Algebraic Geometry} \textbf{9} (2022), no. 2, 122--158.
+\href{https://doi.org/10.14231/AG-2022-005}{doi:10.14231/AG-2022-005}.
+
+\bibitem{Riemenschneider}
+O. Riemenschneider, Characterizing Moi\v sezon spaces by almost positive coherent analytic sheaves,
+\emph{Math. Z.} \textbf{123} (1971), 263--284.
+\href{https://doi.org/10.1007/BF01114795}{doi:10.1007/BF01114795}.
+
+\bibitem{RuppenthalSera}
+J. Ruppenthal and M. Sera,
+Modifications of torsion-free coherent analytic sheaves,
+\emph{Ann. Inst. Fourier (Grenoble)} \textbf{67} (2017), no. 1, 237--265.
+\href{https://doi.org/10.5802/aif.3080}{doi:10.5802/aif.3080}.
+
+\bibitem{Stacks}
+The Stacks Project Authors, \emph{The Stacks Project},
+\href{https://stacks.math.columbia.edu/tag/01OA}{Section 27.21, Projective bundles (tag 01OA)}, and
+\href{https://stacks.math.columbia.edu/tag/01YR}{Section 30.14, Coherent sheaves on Proj, I (tag 01YR)}.
+
+\end{thebibliography}
+\end{document}
